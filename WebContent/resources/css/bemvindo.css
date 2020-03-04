@@ -1,0 +1,11 @@
+.container {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	border-radius: 1em;
+	padding: 1em;
+	position: absolute;
+	align-items: center;
+	top: 25%;
+}
