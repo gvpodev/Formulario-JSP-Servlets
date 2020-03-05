@@ -16,7 +16,7 @@
         <h2>Cadastro de usuário</h2>
         <h3 style="color: red;">${msg}</h3>
         <form action="salvarUsuario" method="post" id="formUser"
-              onsubmit="return validarCamposUser() ? true : false;">
+              onsubmit="return validarCamposUser() ? true : false;" enctype="multipart/form-data">
             <ul class="form-style-1">
                 <li>
                     <table>

@@ -1,103 +1,121 @@
 package beans;
 
 public class BeanUsuario {
-    private Long id;
-    private String login;
-    private String nome;
-    private String senha;
-    private String telefone;
-    private String cep;
-    private String rua;
-    private String bairro;
-    private String estado;
-    private String cidade;
-    private String ibge;
+	private Long id;
+	private String login;
+	private String nome;
+	private String senha;
+	private String telefone;
+	private String cep;
+	private String rua;
+	private String bairro;
+	private String estado;
+	private String cidade;
+	private String ibge;
+	private String fotoBase64;
+	private String contentType;
 
-    public String getEstado() {
-        return estado;
-    }
+	public String getFotoBase64() {
+		return fotoBase64;
+	}
 
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
+	public void setFotoBase64(String fotoBase64) {
+		this.fotoBase64 = fotoBase64;
+	}
 
-    public String getCep() {
-        return cep;
-    }
+	public String getContentType() {
+		return contentType;
+	}
 
-    public void setCep(String cep) {
-        this.cep = cep;
-    }
+	public void setContentType(String contentType) {
+		this.contentType = contentType;
+	}
 
-    public String getBairro() {
-        return bairro;
-    }
+	public String getEstado() {
+		return estado;
+	}
 
-    public void setBairro(String bairro) {
-        this.bairro = bairro;
-    }
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
 
-    public String getCidade() {
-        return cidade;
-    }
+	public String getCep() {
+		return cep;
+	}
 
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
-    }
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
 
-    public String getIbge() {
-        return ibge;
-    }
+	public String getBairro() {
+		return bairro;
+	}
 
-    public void setIbge(String ibge) {
-        this.ibge = ibge;
-    }
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
+	}
 
-    public String getRua() {
-        return rua;
-    }
+	public String getCidade() {
+		return cidade;
+	}
 
-    public void setRua(String rua) {
-        this.rua = rua;
-    }
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
 
-    public String getTelefone() {
-        return telefone;
-    }
+	public String getIbge() {
+		return ibge;
+	}
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
+	public void setIbge(String ibge) {
+		this.ibge = ibge;
+	}
 
-    public String getNome() {
-        return nome;
-    }
+	public String getRua() {
+		return rua;
+	}
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+	public void setRua(String rua) {
+		this.rua = rua;
+	}
 
-    public Long getId() {
-        return id;
-    }
+	public String getTelefone() {
+		return telefone;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
 
-    public String getLogin() {
-        return login;
-    }
+	public String getNome() {
+		return nome;
+	}
 
-    public void setLogin(String login) {
-        this.login = login;
-    }
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-    public String getSenha() {
-        return senha;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
 }
