@@ -1,13 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Cadastro</title>
 <link rel="stylesheet" href="resources/css/cadastro.css">
-<script type="text/javascript" src="prodscript.js"></script>
+<script type="text/javascript" src="resources/javascript/prodscript.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="resources/javascript/jquery.maskMoney.min.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -22,7 +25,7 @@
 					<table>
 						<tr>
 							<td><input type="text" readonly="readonly" id="id" name="id"
-								value="${produto.id}" placeholder="Id - Gerado auto."></td>
+								value="${produto.id}" placeholder="Id - Gerado auto." hidden="hidden"></td>
 						</tr>
 						<tr>
 							<td><input type="text" id="nome" name="nome"
@@ -34,7 +37,7 @@
 						</tr>
 						<tr>
 							<td><input type="text" id="valor" name="valor"
-								value="${produto.valor}" placeholder="Valor"></td>
+								value="${produto.valorTexto}" placeholder="Valor" data-thousands="." data-decimal=","></td>
 						</tr>
 						<tr>
 							<td><input type="submit" value="Salvar" class="field-long"></td>
@@ -63,7 +66,7 @@
 						<td><c:out value="${produto.id}"></c:out></td>
 						<td><c:out value="${produto.nome}"></c:out></td>
 						<td><c:out value="${produto.quantidade}"></c:out></td>
-						<td><c:out value="${produto.valor}"></c:out></td>
+						<td><fmt:formatNumber type="number" maxFractionDigits="2" value="${produto.valor}"></fmt:formatNumber> </td>
 						<td><a href="salvarProduto?acao=delete&produto=${produto.id}">
 								<img title="Excluir" alt="Excluir"
 								src="resources/img/excluir_icon.png" width="20px" height="20px">
@@ -78,4 +81,9 @@
 		</div>
 	</div>
 </body>
+<script>
+  $(function() {
+    $('#valor').maskMoney();
+  })
+</script>
 </html>

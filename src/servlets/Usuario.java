@@ -33,17 +33,17 @@ public class Usuario extends HttpServlet {
 			String acao = request.getParameter("acao");
 			String user = request.getParameter("user");
 
-			if (acao.equalsIgnoreCase("delete")) {
+			if (acao != null && acao.equalsIgnoreCase("delete") && user != null) {
 				daoUsuario.delete(user);
 				RequestDispatcher view = request.getRequestDispatcher("/cadastrousuario.jsp");
 				request.setAttribute("usuarios", daoUsuario.listar());
 				view.forward(request, response);
-			} else if (acao.equalsIgnoreCase("editar")) {
+			} else if (acao != null && acao.equalsIgnoreCase("editar")) {
 				BeanUsuario beanUsuario = daoUsuario.consultar(user);
 				RequestDispatcher view = request.getRequestDispatcher("/cadastrousuario.jsp");
 				request.setAttribute("user", beanUsuario);
 				view.forward(request, response);
-			} else if (acao.equalsIgnoreCase("listartodos")) {
+			} else if (acao != null && acao.equalsIgnoreCase("listartodos")) {
 				try {
 					RequestDispatcher view = request.getRequestDispatcher("/cadastrousuario.jsp");
 					request.setAttribute("usuarios", daoUsuario.listar());
@@ -51,7 +51,7 @@ public class Usuario extends HttpServlet {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			} else if (acao.equalsIgnoreCase("download")) {
+			} else if (acao != null && acao.equalsIgnoreCase("download")) {
 				BeanUsuario usuario = daoUsuario.consultar(user);
 				
 				if (usuario != null) {
@@ -83,7 +83,12 @@ public class Usuario extends HttpServlet {
 					os.flush();
 					os.close();
 				}
+			} else {
+				RequestDispatcher view = request.getRequestDispatcher("/cadastrousuario.jsp");
+				request.setAttribute("usuarios", daoUsuario.listar());
+				view.forward(request, response);
 			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
