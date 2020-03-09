@@ -18,13 +18,13 @@
            <li>
                <table>
                    <tr>
-                       <td><input type="text" id="id" name="id" value="${userEscolhido.id}" readonly="readonly"/></td>
+                       <td><input type="text" id="user" name="user" value="${userEscolhido.id}" readonly="readonly"/></td>
                        <td><input type="text" id="nome" name="nome" value="${userEscolhido.nome}" readonly="readonly"/></td>
                    </tr>
                    <tr>
                        <td><input type="text" id="numero" name="numero" value=""/></td>
                        <td>
-                           <select id="tipo" name="tipo">
+                           <select id="tipo" name="tipo" style="width: 100%;">
                                <option>Celular</option>
                                <option>Trabalho</option>
                                <option>Casa</option>
@@ -34,7 +34,9 @@
                        </td>
                    </tr>
                    <tr>
-                       <td><input type="submit" value="Salvar"/></td>
+                       <td><input type="submit" value="Salvar" style="width: 100%;"/></td>
+                       <td><input type="submit" value="Voltar" 
+                       onclick="document.getElementById('formTel').action = 'salvarTelefones?acao=voltar'" style="width: 100%;"></td>
                    </tr>
                </table>
            </li>
@@ -49,12 +51,13 @@
                 <th>Tipo</th>
                 <th>Excluir</th>
             </tr>
-            <c:forEach items="${telefones}" var="telefone">
+            <c:forEach items="${telefones}" var="telefones">
                 <tr>
-                    <td><c:out value="${telefone.id}"></c:out></td>
-                    <td><c:out value="${telefone.numero}"></c:out></td>
-                    <td><c:out value="${telefone.tipo}"></c:out></td>
-                    <td><a href="salvarTelefones?acao=deleteFone&telefoneId=${telefone.id}"><img src="resources/img/excluir_icon.png" width="20px" height="20px"></a> </td>
+                    <td><c:out value="${telefones.id}"></c:out></td>
+                    <td><c:out value="${telefones.numero}"></c:out></td>
+                    <td><c:out value="${telefones.tipo}"></c:out></td>
+                    <td><a href="salvarTelefones?user=${telefones.usuario}&acao=deleteFone&telefoneId=${telefones.id}">
+                    <img src="resources/img/excluir_icon.png" width="20px" height="20px"></a> </td>
                 </tr>
             </c:forEach>
         </table>
@@ -67,7 +70,6 @@
             alert('Informe o número.');
             return false;
         }
-
         return false;
 
     }

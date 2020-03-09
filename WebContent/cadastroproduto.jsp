@@ -11,9 +11,12 @@
 </head>
 <body>
 	<div class="container">
+		<a href="acessoliberado.jsp" class="field-long">Início</a> <a
+			href="index.jsp" class="field-long">Sair</a>
 		<h2>Cadastro de produto</h2>
 		<h3 style="color: red;">${msg}</h3>
-		<form action="salvarProduto" method="post" id="formProduto" onsubmit="return validarCamposProd() ? true : false;">
+		<form action="salvarProduto" method="post" id="formProduto"
+			onsubmit="return validarCamposProd() ? true : false;">
 			<ul class="form-style-1">
 				<li>
 					<table>
@@ -23,10 +26,10 @@
 						</tr>
 						<tr>
 							<td><input type="text" id="nome" name="nome"
-								value="${produto.nome}" placeholder="Nome"></td>
+								value="${produto.nome}" placeholder="Nome" maxlength="50"></td>
 						</tr>
 						<tr>
-							<td><input type="text" id="quantidade" name="quantidade"
+							<td><input type="number" id="quantidade" name="quantidade"
 								value="${produto.quantidade}" placeholder="Quantidade"></td>
 						</tr>
 						<tr>

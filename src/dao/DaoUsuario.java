@@ -19,8 +19,9 @@ public class DaoUsuario {
 
     public void salvar(BeanUsuario usuario){
         try {
-            String sql = "insert into usuario(login, senha, nome, telefone, cep, rua, bairro, cidade, estado, ibge, fotobase64, contenttype) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; // Query de insert no
-            // banco
+            String sql = "insert into usuario(login, senha, nome, telefone, cep, rua, bairro, cidade,"
+            		+ " estado, ibge, fotobase64, contenttype, curriculobase64, contenttypecurriculo)"
+            		+ " values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; // Query de insert no banco
             PreparedStatement insert = connection.prepareStatement(sql); // Declaração da query sql
             // Inserindo os dados no banco
             insert.setString(1, usuario.getLogin());
@@ -35,6 +36,8 @@ public class DaoUsuario {
             insert.setString(10, usuario.getIbge());
             insert.setString(11, usuario.getFotoBase64());
             insert.setString(12, usuario.getContentType());
+            insert.setString(13, usuario.getCurriculoBase64());
+            insert.setString(14, usuario.getContentTypeCurriculo());
             insert.execute();
             connection.commit();
         } catch (Exception e) {
@@ -65,7 +68,10 @@ public class DaoUsuario {
             beanUsuario.setCidade(resultSet.getString("cidade"));
             beanUsuario.setEstado(resultSet.getString("estado"));
             beanUsuario.setIbge(resultSet.getString("ibge"));
-
+            beanUsuario.setFotoBase64(resultSet.getString("fotobase64"));
+            beanUsuario.setContentType(resultSet.getString("contenttype"));
+            beanUsuario.setCurriculoBase64(resultSet.getString("curriculobase64"));
+            beanUsuario.setContentTypeCurriculo(resultSet.getString("contenttypecurriculo"));
             lista.add(beanUsuario);
         }
         return lista;
@@ -104,6 +110,10 @@ public class DaoUsuario {
             beanUsuario.setCidade(resultSet.getString("cidade"));
             beanUsuario.setEstado(resultSet.getString("estado"));
             beanUsuario.setIbge(resultSet.getString("ibge"));
+            beanUsuario.setFotoBase64(resultSet.getString("fotobase64"));
+            beanUsuario.setContentType(resultSet.getString("contenttype"));
+            beanUsuario.setCurriculoBase64(resultSet.getString("curriculobase64"));
+            beanUsuario.setContentTypeCurriculo(resultSet.getString("contenttypecurriculo"));
 
             return beanUsuario;
         }
@@ -152,7 +162,9 @@ public class DaoUsuario {
 
     public void atualizar(BeanUsuario usuario) {
         try {
-            String sql = "update usuario set login = ?, senha = ?, nome = ?, telefone = ?, cep = ?, rua = ?, bairro = ?, cidade = ?, estado = ?, ibge = ? where id = "
+            String sql = "update usuario set login = ?, senha = ?, nome = ?, telefone = ?, cep = ?, rua = ?, bairro = ?,"
+            		+ " cidade = ?, estado = ?, ibge = ?, fotobase64 = ?, contenttype = ?,"
+            		+ " curriculobase64 = ?, contenttypecurriculo = ? where id = "
                     + usuario.getId();
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, usuario.getLogin());
@@ -165,6 +177,10 @@ public class DaoUsuario {
             statement.setString(8, usuario.getCidade());
             statement.setString(9, usuario.getEstado());
             statement.setString(10, usuario.getIbge());
+            statement.setString(11, usuario.getFotoBase64());
+            statement.setString(12, usuario.getContentType());
+            statement.setString(13, usuario.getCurriculoBase64());
+            statement.setString(14, usuario.getContentTypeCurriculo());
             statement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();

@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Locale;
 
 import beans.BeanProduto;
 import dao.DaoProduto;
@@ -95,7 +96,9 @@ public class ProdutoServlet extends HttpServlet {
 					beanProduto.setQuantidade(Double.parseDouble(quantidade));
 				}
 				if (valor != null && !valor.isEmpty()) {
-					beanProduto.setValor(Double.parseDouble(valor));	
+					String valorProtudo = valor.replaceAll("\\.", "");
+					valorProtudo = valorProtudo.replaceAll("\\,", ".");
+					beanProduto.setValor(Double.parseDouble(valorProtudo));	
 				}
 
 				if (id == null || id.isEmpty() && daoProduto.validarNome(nome) && podeInserir) {
