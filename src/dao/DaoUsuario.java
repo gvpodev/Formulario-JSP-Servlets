@@ -20,8 +20,8 @@ public class DaoUsuario {
     public void salvar(BeanUsuario usuario){
         try {
             String sql = "insert into usuario(login, senha, nome, telefone, cep, rua, bairro, cidade,"
-            		+ " estado, ibge, fotobase64, contenttype, curriculobase64, contenttypecurriculo)"
-            		+ " values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; // Query de insert no banco
+            		+ " estado, ibge, fotobase64, contenttype, curriculobase64, contenttypecurriculo, fotoBase64Miniatura)"
+            		+ " values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; // Query de insert no banco
             PreparedStatement insert = connection.prepareStatement(sql); // Declaração da query sql
             // Inserindo os dados no banco
             insert.setString(1, usuario.getLogin());
@@ -38,6 +38,7 @@ public class DaoUsuario {
             insert.setString(12, usuario.getContentType());
             insert.setString(13, usuario.getCurriculoBase64());
             insert.setString(14, usuario.getContentTypeCurriculo());
+            insert.setString(15, usuario.getFotoBase64Miniatura());
             insert.execute();
             connection.commit();
         } catch (Exception e) {
@@ -52,7 +53,7 @@ public class DaoUsuario {
 
     public List<BeanUsuario> listar() throws Exception {
         List<BeanUsuario> lista = new ArrayList<BeanUsuario>();
-        String sql = "select * from usuario";
+        String sql = "select * from usuario where login <> 'admin'";
         PreparedStatement statement = connection.prepareStatement(sql);
         ResultSet resultSet = statement.executeQuery();
         while (resultSet.next()) {
@@ -79,7 +80,7 @@ public class DaoUsuario {
 
     public void delete(String id) {
         try {
-            String sql = "delete from usuario where id = '" + id + "'";
+            String sql = "delete from usuario where id = '" + id + "' and login <> 'admin'";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.execute();
             connection.commit();
@@ -94,7 +95,7 @@ public class DaoUsuario {
     }
 
     public BeanUsuario consultar(String id) throws Exception {
-        String sql = "select * from usuario where id = '" + id + "'";
+        String sql = "select * from usuario where id = '" + id + "' and login <> 'admin'";
         PreparedStatement statement = connection.prepareStatement(sql);
         ResultSet resultSet = statement.executeQuery();
         if (resultSet.next()) {
@@ -164,7 +165,7 @@ public class DaoUsuario {
         try {
             String sql = "update usuario set login = ?, senha = ?, nome = ?, telefone = ?, cep = ?, rua = ?, bairro = ?,"
             		+ " cidade = ?, estado = ?, ibge = ?, fotobase64 = ?, contenttype = ?,"
-            		+ " curriculobase64 = ?, contenttypecurriculo = ? where id = "
+            		+ " curriculobase64 = ?, contenttypecurriculo = ?, fotoBase64Miniatura = ? where id = "
                     + usuario.getId();
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, usuario.getLogin());
@@ -181,6 +182,7 @@ public class DaoUsuario {
             statement.setString(12, usuario.getContentType());
             statement.setString(13, usuario.getCurriculoBase64());
             statement.setString(14, usuario.getContentTypeCurriculo());
+            statement.setString(15, usuario.getFotoBase64Miniatura());
             statement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();

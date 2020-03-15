@@ -10,9 +10,9 @@
 	crossorigin="anonymous"></script>
 </head>
 <body>
+	<a href="acessoliberado.jsp" class="field-long"><img alt="Inicio" src="resources/img/home.png" height="50px" width="50px"> </a>
+	<a href="index.jsp" class="field-long"><img alt="Sair" src="resources/img/exit.png" height="50px" width="50px"></a>
 	<div class="container">
-		<a href="acessoliberado.jsp" class="field-long">Início</a> <a
-			href="index.jsp" class="field-long">Sair</a>
 		<h2>Cadastro de usuário</h2>
 		<h3 style="color: red;">${msg}</h3>
 		<form action="salvarUsuario" method="post" id="formUser"
@@ -59,7 +59,7 @@
 						<tr>
 							<td>Foto:</td>
 							<td><input type="file" name="foto"
-								value="${user.fotoBase64}" /> <input type="text"
+								value="${user.fotoBase64}" style="width: 100%; max-width: 100px;" /> <input type="text"
 								name="fotoTemp" value="${user.fotoBase64}" readonly="readonly"
 								hidden="hidden" /> <input type="text" name="contentFotoTemp"
 								value="${user.contentType}" readonly="readonly" hidden="hidden" /></td>
@@ -67,17 +67,15 @@
 						<tr>
 							<td>Currículo:</td>
 							<td><input type="file" name="curriculo"
-								value="${user.curriculoBase64}" /> <input type="text"
+								value="${user.curriculoBase64}" style="width: 100%; max-width: 100px;"/> <input type="text"
 								name="curriculoTemp" value="${user.curriculoBase64}"
 								readonly="readonly" hidden="hidden" /> <input type="text"
 								name="contentCurriculoTemp" value="${user.contentTypeCurriculo}"
 								readonly="readonly" hidden="hidden" /></td>
 						</tr>
 						<tr>
-							<td><input type="submit" value="Salvar" class="field-long"></td>
-						</tr>
-						<tr>
-							<td><input type="submit" value="Cancelar" class="field-long"
+							<td><input type="submit" id="saveF" value="Salvar" class="field-long"></td>
+							<td><input type="submit" id="cancelF" value="Cancelar" class="field-long"
 								style="background-color: brown"
 								onclick="document.getElementById('formUser').action='salvarUsuario?acao=reset'"></td>
 						</tr>
@@ -144,21 +142,23 @@
 
 	<script>
 		function validarCamposUser() {
-			if (document.getElementById("login").value == '') {
-				alert('Informe o login.');
-				return false;
-			} else if (document.getElementById("nome").value == '') {
-				alert('Informe o nome.');
-				return false;
-			} else if (document.getElementById("telefone").value == '') {
-				alert('Informe o telefone.');
-				return false;
-			} else if (document.getElementById("senha").value == '') {
-				alert('Informe a senha.');
-				return false;
+			if(document.getElementById("savinF")){
+				if (document.getElementById("login").value == '') {
+					alert('Informe o login.');
+					return false;
+				} else if (document.getElementById("nome").value == '') {
+					alert('Informe o nome.');
+					return false;
+				} else if (document.getElementById("telefone").value == '') {
+					alert('Informe o telefone.');
+					return false;
+				} else if (document.getElementById("senha").value == '') {
+					alert('Informe a senha.');
+					return false;
+				}
+			} else{
+				return true;
 			}
-
-			return true;
 		}
 
 		function consultaCEP() {

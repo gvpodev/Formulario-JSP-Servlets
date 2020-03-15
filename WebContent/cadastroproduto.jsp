@@ -13,9 +13,9 @@
 <script type="text/javascript" src="resources/javascript/jquery.maskMoney.min.js"></script>
 </head>
 <body>
+	<a href="acessoliberado.jsp" class="field-long"><img alt="Inicio" src="resources/img/home.png" height="50px" width="50px"> </a>
+	<a href="index.jsp" class="field-long"><img alt="Sair" src="resources/img/exit.png" height="50px" width="50px"></a>
 	<div class="container">
-		<a href="acessoliberado.jsp" class="field-long">Início</a> <a
-			href="index.jsp" class="field-long">Sair</a>
 		<h2>Cadastro de produto</h2>
 		<h3 style="color: red;">${msg}</h3>
 		<form action="salvarProduto" method="post" id="formProduto"
@@ -43,7 +43,7 @@
 							<td><input type="submit" value="Salvar" class="field-long"></td>
 						</tr>
 						<tr>
-							<td><input type="submit" value="Cancelar" class="field-long"
+							<td><input type="submit" value="Cancelar" class="field-long" style="background-color: brown"
 								onclick="document.getElementById('formProduto').action='salvarProduto?acao=reset'"></td>
 						</tr>
 					</table>
@@ -52,7 +52,7 @@
 		</form>
 		<div class="table-wrapper">
 			<table class="fl-table">
-				<caption>Produtos cadastrados</caption>
+				<caption><h3>Produtos cadastrados</h3></caption>
 				<tr>
 					<th>Id</th>
 					<th>Nome</th>
